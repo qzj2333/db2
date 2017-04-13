@@ -1,0 +1,32 @@
+<?php
+	include_once("db_connect.php");	
+	session_start();
+
+	$email       = $_POST['inputEmail'];
+	$password    = $_POST['inputPassword'];
+	$md5password = md5($password);
+	// get pw in data table
+	$q = "SELECT password FROM USER WHERE email = '" . $email . "';";
+	$r = $db->query($q);   // password of that username
+		
+	if( $r->rowCount() == 0 )   // email DNE
+	{
+		Header("Location: http://cs.gettysburg.edu/~arpsja01/dbproj/database/main.php?err=emailDNE"); 
+	}
+		
+		
+ 	else {
+		$row = $r->fetch();   // get the table value
+
+		if( $row['password'] != $md5password )   // password wrong
+		{
+			Header("Location: http://cs.gettysburg.edu/~arpsja01/dbproj/database/main.php?err=wrongPW"); 
+		}
+		else   // username & password matches
+		{				
+			$_SESSION["email"] = $email;
+			$_SESSION["pw"]    = $password;
+			Header("Location: http://cs.gettysburg.edu/~wangli01/proj/home.php");   // go to user account page
+		} 
+	}
+?>
