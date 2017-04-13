@@ -98,7 +98,6 @@
 						<INPUT type='text' class="form-control" name='name' placeholder='Fridge Name'/>    <BR />
 						<INPUT type='text' class="form-control" name='price' placeholder='Price'/>  <BR />
 						<INPUT type='text' class="form-control" name='brand' placeholder='Brand'/>  <BR />
-						<input type='date' class='form-control' name='date' placeholder='YYYY-MM-DD' /> <br>
 						<INPUT type='text' class="form-control" name='warranty' placeholder='Warranty (years)'/>  <BR />
 						<div class="input-group">
 						<input type="text" class="form-control" readonly><br><br>

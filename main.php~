@@ -3,7 +3,7 @@
 	if( isset($_SESSION["email"]) )
 	{
 		print_r($_SESSION);
-		Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/home.php");   // go to user account page
+		Header("Location: http://cs.gettysburg.edu/~arpsja01/dbproj/database/home.php");   // go to user account page
 	} 
 ?>
 <!DOCTYPE HTML>

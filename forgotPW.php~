@@ -10,7 +10,7 @@
 	{
 		// send email to user: call mail function
 		$result = mail($email, 'Reset password from Fridge Manager ',         // Title 
-		                       'Hello, please reset password of this email by clicking the following link: http://cs.gettysburg.edu/~arpsja01/db2/enterPassword.php?op='. $email,  // content (paragraph inside email)
+		                       'Hello, please reset password of this email by clicking the following link: http://cs.gettysburg.edu/~wangli01/proj/enterPassword.php?op='. $email,  // content (paragraph inside email)
 		// above: resetPW link, needed to be able to click
 				       'From: ' . 'Admin@fridgeManager'); 
 	

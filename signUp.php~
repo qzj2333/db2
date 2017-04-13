@@ -12,11 +12,11 @@
 	if($r->rowCount() != 0)   // email already exist
 	{
 		// go back to login page
-		Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/signUpPage.php?err=emailExist");
+		Header("Location: http://cs.gettysburg.edu/~arpsja01/dbproj/database/signUpPage.php?err=emailExist");
 	}
 	else if($password != $repeatPW)   // pw != repeatPW
 	{
-		Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/signUpPage.php?err=pwNM");
+		Header("Location: http://cs.gettysburg.edu/~arpsja01/dbproj/database/signUpPage.php?err=pwNM");
 	}
 	else  // create account
 	{
@@ -30,7 +30,7 @@
 			session_start();
 			$_SESSION["email"] = $email;
 			$_SESSION["pw"]    = $password;
-			Header("Location:http://cs.gettysburg.edu/~arpsja01/db2/home.php");   // go to user account page
+			Header("Location:http://cs.gettysburg.edu/~wangli01/proj/home.php");   // go to user account page
 		}
 	}
 		
