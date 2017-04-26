@@ -1,5 +1,6 @@
 <?php
 	include_once("db_connect.php");	
+	$url = explode("/", $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); 
 	session_start();
 
 	$email       = $_POST['inputEmail'];
@@ -11,7 +12,8 @@
 		
 	if( $r->rowCount() == 0 )   // email DNE
 	{
-		Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/main.php?err=emailDNE"); 
+		$link = $url[0]."/".$url[1]."/".$url[2]."/main.php?err=emailDNE";
+		Header("Location:http://".$link); 
 	}
 		
 		
@@ -20,13 +22,16 @@
 
 		if( $row['password'] != $md5password )   // password wrong
 		{
-			Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/main.php?err=wrongPW"); 
+			$link = $url[0]."/".$url[1]."/".$url[2]."/main.php?err=wrongPW";
+			Header("Location:http://".$link); 
 		}
 		else   // username & password matches
 		{				
 			$_SESSION["email"] = $email;
 			$_SESSION["pw"]    = $password;
-			Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/home.php");   // go to user account page
+			
+			$link = $url[0]."/".$url[1]."/".$url[2]."/home.php";
+			Header("Location:http://".$link);   // go to user account page
 		} 
 	}
 ?>
