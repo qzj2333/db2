@@ -43,7 +43,6 @@
 
 				<?php
 					$code = $_GET['err'];
-
 					if($code == 'emailExist')
 					{
 						print("<FONT color = 'yellow'>email already exist.</FONT>");
