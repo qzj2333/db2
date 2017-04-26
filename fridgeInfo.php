@@ -42,7 +42,8 @@
 			 </div>
 			 <ul class="nav navbar-nav">
 				<li><a href="home.php">Home</a></li>
-				<li><a href="signUpPage.php">Account Settings</a></li>
+				<li><a href="accountPage.php">Account Settings</a></li>
+				<li  class="active"><a href="#">Fridge Information</a></li>
 				<li><a href="logOut.php">Logout</a></li>
 			 </ul>
 		  </div>
@@ -51,6 +52,24 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-1">
 				<h3>Items in Fridge: <?php echo $_SESSION['nname'] ?></h3>   <!-- $_SESSION['nname'] is the nname of the fridge> -->
+
+<?php
+	$meg = $_GET['meg'];
+	if( $meg == 'success' )
+	{
+		print("<FONT color = 'yellow'>Amount update successfully.</FONT>");
+	}
+	else if( $meg == 'fail' )
+	{
+		print("<FONT color = 'yellow'>Fail to update.</FONT>");
+	}
+	else if( $meg == 'SUCCESS' )
+	{
+		print("<FONT color = 'yellow'>Item create successfully.</FONT>");
+	}
+?>
+</BR></BR>
+
 				<!-- make header of the table of items in this fridge -->
 				<table class="table">
 					<TR>
@@ -74,6 +93,14 @@
 							printf("<TD>%s</TD>\n", $row['LOCATION']);
 							printf("<TD>%s</TD>\n", $row['AMOUNT']);
 							printf("<TD>%s</TD>\n", $row['D_EXP']);
+							printf("<FORM name='editItem' method=POST action='editItem.php?op=%s'>\n",$row['IID']);
+							printf("<TD>\n");
+							printf("<INPUT type='text' name='newAmount' placeholder = 'Enter integer only' size='15'>\n");	
+							printf("</TD>\n");
+							printf("<TD>\n");
+							printf("<INPUT type='submit' value='Update'>\n");
+							printf("</TD>\n");
+							printf("</FORM>\n");	
 							printf("</TR>\n");							
 						} 
 					?> 
@@ -82,7 +109,10 @@
 
 			<form name='newFridge' action='addFridge.php' method='POST'>
 				<input type='submit' value='Add Fridge'>
-			</form>
+			</form> </BR>
+			<FORM name='newItem' action='addItemPage.php' method='POST'>
+				<INPUT type='submit' value='Add New Item'>
+			</FORM> </BR>
 		</div>
 	</div>
  </div>
