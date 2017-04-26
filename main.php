@@ -2,8 +2,10 @@
 	session_start();
 	if( isset($_SESSION["email"]) )
 	{
-		print_r($_SESSION);
-		Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/home.php");   // go to user account page
+		// go to user account page
+		$url = explode("/", $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+		$url = $url[0]."/".$url[1]."/".$url[2]."/home.php";
+		Header("Location:http://".$url);   
 	} 
 ?>
 <!DOCTYPE HTML>
