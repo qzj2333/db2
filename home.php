@@ -6,17 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<TITLE>Home | Fridge Manager</TITLE>
-	
-	<!--
-	<link href="home.css" rel="stylesheet">
-	<link href="bootstrap.min.css" rel="stylesheet">
-	-->
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-	
-	
 
 </HEAD>
 
@@ -60,9 +54,9 @@
 					
 					print "<div class='thumbnail'>";
 					print "<a href='fridgeInfo.php?id=$fid&op=$nname'>";
-					print "<img src='image/f$fid.$picture'>";
+					print "<img src='fridges/f$fid.$picture' height=200 width=200>";
 					print "<div class='caption'>";
-					print "<p>$nname</p>";
+					print "<p>$nname, $fid, $picture</p>";
 					print "</div></a></div>";
 					
 					$counter = 0;
@@ -75,29 +69,16 @@
 							
 							print "<div class='col-md-4'>";
 							print "<div class='thumbnail'>";
-							print "<a href='fridgeInfo.php?id=$fid&op=$nname'>";
-							print "<img src='image/f$fid.$picture'>";
+							print "<a href='fridgeInfo.php?id=$fid&op=$nname''>";
+							print "<img src='fridges/f$fid.$picture' height=200 width=200>";
 							print "<div class='caption'>";
-							print "<p>$nname</p>";
+							print "<p>$nname, $fid, $picture</p>";
 							print "</div></a></div>";
 							
 							++$counter;
 						}
 					
 					print "</row><div class='row'><div class='col-md-4'>";	
-						
-					
-					/*
-						// action: fridgeInfo.php?op=nname&id=fid
-						print("<div class="thumbnail">
-									<a href="fridgeInfo.php?id=".$row['fid']."&op=".$row['nname']."'>	
-										<img src="f".$row['fid'].".".$row['picture']."
-									");
-						print("<FORM method = 'POST' action = 'fridgeInfo.php?id=".$row['fid']."&op=".$row['nname']."'>");
-						print("<input type = 'image' src='f".$row['fid']. "." .$row['picture']. "' alt='submit' width = '300'>");
-						print("</FORM>");
-						print("</BR>".$row['nname']);
-					*/
 					
 					}					
 				?>

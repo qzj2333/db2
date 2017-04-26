@@ -13,18 +13,12 @@
 
    <title>Add Fridge</title>
 
-
-	<!--
-   <link href="home.css" rel="stylesheet">
-   <link href="bootstrap.min.css" rel="stylesheet">
-	-->
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<script src="jquery-3.2.0.min.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+ 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
    <script>
    	
@@ -48,10 +42,7 @@
 		   });
 		});
 	});
-	
-   </script>
-   
-   <script>
+
     $(document).ready(function(){
       var date_input=$('input[name="date"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
@@ -62,11 +53,9 @@
         autoclose: true,
       };
       date_input.datepicker(options);
-    })
-	</script>
-   
+    });
 
-
+</script>
 </head>
 
 <body>
@@ -102,14 +91,13 @@
 						<input type="text" class="form-control" readonly><br><br>
 							<label>
 								<span class="btn btn-primary">
-									Browse <input type="file" style="display: none;">
+									Browse <input type="file" style="display: none;" name='fridgePic'>
 								</span>
 							</label>	
 						<button class="btn btn-primary"type="submit" value="add_fridge"><span class="glyphicon glyphicon-circle-arrow-up"></span> Upload</a>
 						</div>
 					</div>
 				</div>
-
 			</form>				
 		</div>
 	</div>
