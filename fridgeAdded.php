@@ -55,7 +55,7 @@
 		
 		//$date is not working when adding to database (always gives 0000-00-00)
 		$query1 = "INSERT INTO FRIDGE VALUES(" . $fid . ", '" . $name . "' , '" . $ext . "' , " . $price . " , '" . $brand . "'
-										  , " . $date . " , " . $warranty . ");";
+										  , '" . $date . "' , " . $warranty . ");";
 		$query2 = "INSERT INTO F_U VALUES(" . $fid . ", '" . $email . "');";
 		
 		$result1 = $db->query($query1);
