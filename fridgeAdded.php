@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include_once("db_connect.php");
+	$url = explode("/", $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); 
 	$email = $_SESSION["email"];
 
 	print_r($_POST);
@@ -48,10 +49,12 @@
 		//header back to addFridge page
 		
 	} else{
-		$folder = "http://cs.gettysburg.edu/~arpsja01/db2/fridges/";
-		$fn = $folder . $fid . "." . $ext;
+		$folder = './fridges/';
+		$fn = $folder .'f'. $fid . "." . $ext;
 		//$fn = $fid . "." . $ext;
-		move_uploaded_file($realdata, $fn);
+		move_uploaded_file($realdata, "$fn");
+		
+		echo($fn);
 		
 		//$date is not working when adding to database (always gives 0000-00-00)
 		$query1 = "INSERT INTO FRIDGE VALUES(" . $fid . ", '" . $name . "' , '" . $ext . "' , " . $price . " , '" . $brand . "'
@@ -62,11 +65,9 @@
 		$result2 = $db->query($query2);
 		
 		if ($result1 != FALSE && $result2 != FALSE) {
-			//header back to home page with new fridge
+			$link = $url[0]."/".$url[1]."/".$url[2]."/main.php";
+			Header("Location:http://".$link); 
 		}
 	}
-
-
-
 
 ?>
