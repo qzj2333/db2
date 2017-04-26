@@ -38,16 +38,13 @@
 		
 		$(document).ready(function(){
 			$(':file').on('fileselect', function(event, numFiles, label) {
-
 			var input = $(this).parents('.input-group').find(':text'),
 			  log = numFiles > 1 ? numFiles + ' files selected' : label;
-
 			if( input.length ) {
 			  input.val(log);
 			} else {
 			  if( log ) alert(log);
 			}
-
 		   });
 		});
 	});
@@ -79,11 +76,12 @@
 	<nav class="navbar navbar-default">
 	 	<div class="container-fluid">
 		 <div class="navbar-header">
-			<a class="navbar-brand" href="#">Fridge Manager</a>
+			<a class="navbar-brand">Fridge Manager</a>
 		 </div>
 		 <ul class="nav navbar-nav">
 			<li><a href="home.php">Home</a></li>
-			<li><a href="signUpPage.php">Account Settings</a></li>
+			<li class="active"><a href="#">Add Fridge</a></li>
+			<li><a href="accountPage.php">Account Settings</a></li>
 			<li><a href="logOut.php">Logout</a></li>
 		 </ul>
 	  </div>
