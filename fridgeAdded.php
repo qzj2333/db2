@@ -48,9 +48,9 @@
 		//header back to addFridge page
 		
 	} else{
-		//$folder = "path to wangli01 images folder";
-		//$fn = $folder . $fid . "." . $ext;
-		$fn = $fid . "." . $ext;
+		$folder = "http://cs.gettysburg.edu/~arpsja01/db2/fridges/";
+		$fn = $folder . $fid . "." . $ext;
+		//$fn = $fid . "." . $ext;
 		move_uploaded_file($realdata, $fn);
 		
 		//$date is not working when adding to database (always gives 0000-00-00)
