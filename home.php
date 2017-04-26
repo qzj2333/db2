@@ -30,7 +30,7 @@
 			 </div>
 			 <ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="signUpPage.php">Account Settings</a></li>
+				<li><a href="accountPage.php">Account Settings</a></li>
 				<li><a href="logOut.php">Logout</a></li>
 			 </ul>
 		  </div>
@@ -60,7 +60,7 @@
 					
 					print "<div class='thumbnail'>";
 					print "<a href='fridgeInfo.php?id=$fid&op=$nname'>";
-					print "<img src='f$fid.$picture'>";
+					print "<img src='image/f$fid.$picture'>";
 					print "<div class='caption'>";
 					print "<p>$nname</p>";
 					print "</div></a></div>";
@@ -76,7 +76,7 @@
 							print "<div class='col-md-4'>";
 							print "<div class='thumbnail'>";
 							print "<a href='fridgeInfo.php?id=$fid&op=$nname'>";
-							print "<img src='f$fid.$picture'>";
+							print "<img src='image/f$fid.$picture'>";
 							print "<div class='caption'>";
 							print "<p>$nname</p>";
 							print "</div></a></div>";
