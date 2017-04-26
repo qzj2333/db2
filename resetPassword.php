@@ -1,5 +1,6 @@
 <?php
-	include_once("db_connect.php");		
+	include_once("db_connect.php");	
+	$url = explode("/", $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);	
 	
 	// user filled info on resetPW page --> update pw
 	$email    = $_GET ['op'];             // get email: email must exist (check before send email)
@@ -8,10 +9,8 @@
 
 	if ($password != $repeatPW)
 	{	
-		$url = "Location:http://cs.gettysburg.edu/~arpsja01/dbproj/database/enterPassword.php?op=" . $email . "&err=pwNM";
-
-		// go back to resetPWPage with error message "pw does not match"
-		Header($url);
+		$link = $url[0]."/".$url[1]."/".$url[2]."/enterPassword.php?op=" . $email . "&err=pwNM";
+		Header("Location:http://".$link);
 	}
 	else
 	{
@@ -22,8 +21,8 @@
 
 		if($r != FALSE )   // pw update successfully
 		{
-			// go back to main page with successfully message shown
-			Header("Location:http://cs.gettysburg.edu/~arpsja01/db2/main.php?err=success");
+			$link = $url[0]."/".$url[1]."/".$url[2]."/main.php?err=success";
+			Header("Location:http://".$link);
 		}
 	}
 
