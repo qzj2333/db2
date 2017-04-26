@@ -31,7 +31,9 @@
 			 </div>
 			 <ul class="nav navbar-nav">
 				<li class="active"><a href="home.php">Home</a></li>
-				<li><a href="signUpPage.php">Account Settings</a></li>
+				<li><a href="accountPage.php">Account Settings</a></li>
+				<li><a href="fridgeInfo.php">Fridge Information</a></li>
+				<li  class="active"><a href="#">Item Information</a></li>
 				<li><a href="logOut.php">Logout</a></li>
 			 </ul>
 		  </div>
@@ -55,7 +57,7 @@
 						
 						$row  = $r->fetch();
 						$id   = $row['infoID'];
-						$name = $row['name'];
+						$name = $row['NAME'];
 						$type = $row['type'];
 						$desc = $row['description'];
 						$amt  = $row['amount'];
@@ -64,8 +66,7 @@
 						$dpur = $row['D_purchased'];
 						$dexp = $row['D_exp'];
 						$form = $row['picture'];
-						
-						print "<img src='i$id.$form'>";
+						print "<img src='image/i$id.$form'>";
 						print "<div class='caption'>";
 						print "<p>Name: $name</p>";
 						print "<p>Type: $type</p>";
