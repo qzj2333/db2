@@ -1,25 +1,30 @@
 <?php
 	include_once("db_connect.php");	
-	
+	$url = explode("/", $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+
 	// get info from user
-	$email = $_POST['inputEmail'];     // inputEmail may change
+	$email = $_POST['inputEmail']; 
 	// check if email exist:
 	$q = "SELECT email FROM USER WHERE email = '" . $email . "';";
 	$r = $db->query($q);
-	if($r->rowCount() != 0 )   // email not exist
+	if($r->rowCount() != 0 )   // email exist
 	{
+		$link = $url[0]."/".$url[1]."/".$url[2]."/forgotPWPage.php?op=".$email;
+
 		// send email to user: call mail function
 		$result = mail($email, 'Reset password from Fridge Manager ',         // Title 
-		                       'Hello, please reset password of this email by clicking the following link: http://cs.gettysburg.edu/~arpsja01/db2/enterPassword.php?op='. $email,  // content (paragraph inside email)
-		// above: resetPW link, needed to be able to click
+		                       'Hello, please reset password of this email by clicking the following link: http://'.$link,  // content (paragraph inside email)
 				       'From: ' . 'Admin@fridgeManager'); 
 	
 		// give user message
-		Header("Location:http://cs.gettysburg.edu/~arpsja01/dbproj/database/forgotPWPage.php?op=message");
+
+		$link = $url[0]."/".$url[1]."/".$url[2]."/forgotPWPage.php?op=message";
+		Header("Location:http://".$link); 
 	}		
 	else
 	{
 		// give user message
-		Header("Location:http://cs.gettysburg.edu/~arpsja01/dbproj/database/forgotPWPage.php?op=emailDNE");
+		$link = $url[0]."/".$url[1]."/".$url[2]."/forgotPWPage.php?op=emailDNE";
+		Header("Location:http://".$link); 
 	}
 ?>
