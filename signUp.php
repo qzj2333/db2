@@ -1,5 +1,6 @@
 <?php
 	include_once("db_connect.php");
+	$url = explode("/", $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']); 
 	// get info from user
 	$email    = $_POST['inputEmail'];
 	$password = $_POST['inputPassword'];
@@ -12,11 +13,13 @@
 	if($r->rowCount() != 0)   // email already exist
 	{
 		// go back to login page
-		Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/signUpPage.php?err=emailExist");
+		$link = $url[0]."/".$url[1]."/".$url[2]."/signUpPage.php?err=emailExist";
+		Header("Location:http://".$link);  
 	}
 	else if($password != $repeatPW)   // pw != repeatPW
 	{
-		Header("Location: http://cs.gettysburg.edu/~arpsja01/db2/signUpPage.php?err=pwNM");
+		$link = $url[0]."/".$url[1]."/".$url[2]."/signUpPage.php?err=pwNM";
+		Header("Location:http://".$link); 
 	}
 	else  // create account
 	{
@@ -24,13 +27,13 @@
 		// insert into mysql data table: email, password, fname, lname, mname
 		$q = "INSERT INTO USER VALUES ( '" . $email . "', '" . $md5password . "', NULL, NULL, NULL);";
 		$r = $db->query($q);
-
 		if($r != FALSE)   // account created successfully
 		{
 			session_start();
 			$_SESSION["email"] = $email;
 			$_SESSION["pw"]    = $password;
-			Header("Location:http://cs.gettysburg.edu/~arpsja01/db2/home.php");   // go to user account page
+			$link = $url[0]."/".$url[1]."/".$url[2]."/home.php";
+			Header("Location:http://".$link);   // go to user account page
 		}
 	}
 		
