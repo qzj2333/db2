@@ -106,10 +106,6 @@
 					?> 
 					
 				</table> 
-
-			<form name='newFridge' action='addFridge.php' method='POST'>
-				<input type='submit' value='Add Fridge'>
-			</form> </BR>
 			<FORM name='newItem' action='addItemPage.php' method='POST'>
 				<INPUT type='submit' value='Add New Item'>
 			</FORM> </BR>

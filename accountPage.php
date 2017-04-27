@@ -104,6 +104,7 @@
 					</FORM><BR />
 
 					<H3>Account Details</H3>
+					Current email: <?php echo $_SESSION['email']; ?><BR /><BR />
 					<FORM name='newEmail' action='accountSetting.php?op=email' method='POST'>
 						Change Email Address: <INPUT type='text' name='email'><BR /><BR />
 						<INPUT type='submit' value='Update Email'>

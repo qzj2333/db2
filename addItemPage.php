@@ -127,21 +127,16 @@
 	<H5> None of the above: Please enter information to create new item</H5>
 	Name:        <INPUT type='text' name='name' size = '15' />   <BR />
 	Type:        <INPUT type='text' name='type' size = '15' />   <BR />
- 	Description: <INPUT type='text' name='desc' size = '30' />   <BR />
-	Image:       <INPUT type='file' name='itemPict'>  <BR /><BR />
-	
-<!--	Upload image for refrigerator: <INPUT type='file' name='fridgePic'> -->
-	
-						<div class="input-group">
-						<input type="text" class="form-control" readonly><br><br>
-							<label>
-								<span class="btn btn-primary">
-									Browse <input type="file" style="display: none;">
-								</span>
-							</label>	
-						<button class="btn btn-primary"type="submit" value="add_item"><span class="glyphicon glyphicon-circle-arrow-up"></span> Upload</a>
-						</div>
-					</div>
+ 	Description: <INPUT type='text' name='desc' size = '30' />   <BR /><BR />
+	<div class="input-group">
+		<input type="text" class="form-control" readonly><br><br>
+		<label>
+			<span class="btn btn-primary">
+				Browse <input type="file" style="display: none;" name='itemPic'>
+			</span>
+		</label>	
+		<button class="btn btn-primary"type="submit" value="add_item"><span class="glyphicon glyphicon-circle-arrow-up"></span> Upload</a>
+	</div>
 				</div>
 
 			</form>				

@@ -34,18 +34,43 @@
 			<div class="col-md-8 col-md-offset-2">
 			
 				</BR><center><H2>Your current refrigerators:</H2></center>
-				
+
+<?php
+	$msg = $_GET['msg'];
+	$name = $_GET['name'];
+
+	if( $msg == 'deleteSuccess' )
+	{
+		printf("<FONT color = 'yellow'>Fridge %s deleted successfully.</FONT>\n", $name);
+	}
+	else if( $msg == 'deleteFail' )
+	{
+		printf("<FONT color = 'yellow'>Fail to delete fridge %s.</FONT>\n", $name);
+	}
+	else if( $msg == 'DNE' )
+	{
+		print("<FONT color = 'yellow'>Invalid fridge.</FONT>");
+	}
+?>				
+
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-12" align='center'>
 			<!-- This code should work to display every fridge for the user. -->
 
 				<?php
 					session_start(); 
 					include_once("db_connect.php");	
 					$email = $_SESSION["email"];
+
 					$q = "SELECT fid, picture, nname FROM FRIDGE NATURAL JOIN F_U WHERE email='".$email."';";  
 					$r = $db->query($q);	
-					
+
+					if($r->rowCount() == 0)
+					{
+						print("<H3>You don't have any fridges at this point.</H3>");
+					}
+					else
+{
 					while( $i = $r->fetch() ){
 					
 					$fid     = $i['fid'];
@@ -57,7 +82,10 @@
 					print "<img src='fridges/f$fid.$picture' height=200 width=200>";
 					print "<div class='caption'>";
 					print "<p>$nname, $fid, $picture</p>";
-					print "</div></a></div>";
+					print "<FORM name='deleteFridge' action='deleteFridge.php?op=$fid'>";
+					print "<INPUT type='submit' value='Delete fridge'>";
+					print "</FORM>";
+					print "</div></a></div><BR /><BR />";
 					
 					$counter = 0;
 					
@@ -67,10 +95,13 @@
 							$nname   = $j['nname'];
 							$picture = $j['picture'];
 							
-							print "<div class='col-md-4'>";
+							print "<div class='col-md-12' align='center'>";
 							print "<div class='thumbnail'>";
-							print "<a href='fridgeInfo.php?id=$fid&op=$nname''>";
+							print "<a href='fridgeInfo.php?id=$fid&op=$nname'>";
 							print "<img src='fridges/f$fid.$picture' height=200 width=200>";
+							print "<FORM name='deleteFridge' method=POST action='deleteFridge.php?op=$fid'>";
+							print "<INPUT type='submit' value='Delete fridge'>";
+							print "</FORM>";
 							print "<div class='caption'>";
 							print "<p>$nname, $fid, $picture</p>";
 							print "</div></a></div>";
@@ -80,7 +111,8 @@
 					
 					print "</row><div class='row'><div class='col-md-4'>";	
 					
-					}					
+					}
+}					
 				?>
 
 				</BR> </BR>

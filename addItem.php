@@ -19,6 +19,7 @@
 	{
 		$link = $url[0]."/".$url[1]."/".$url[2]."/addItemPage.php?&meg=FAIL";
 		Header("Location:http://".$link);
+		return;
 	}
 	else
 	{
@@ -36,13 +37,13 @@
 			$type = $_POST['type'];
 			$desc = $_POST['desc'];
 
-// ************* image part can not work
+
 			//image
-/*			$filedata = $_FILES['itemPict'];
+			$filedata = $_FILES['itemPic'];
 	
 			$userfn    = $filedata['name'];
 			$size 	   = $filedata['size'];
-			$type 	   = $filedata['type'];
+			$typee 	   = $filedata['type'];
 			$serverfn  = $filedata['tmp_name'];
 			$ext = end((explode(".", $userfn)));
 			print("<br />" . $userfn . "<br />" . $size . "<br />" . $type . "<br />" . $serverfn . "<br />" . $ext . "<br />");
@@ -54,42 +55,51 @@
 			if($imginfo == FALSE)
 			{
 				$msg = "File is not an image";
-				$link = $url[0]."/".$url[1]."/".$url[2]."/addItemPage.php?&meg=".$msg";
+				$link = $url[0]."/".$url[1]."/".$url[2]."/addItemPage.php?&meg=".$msg;
 				Header("Location:http://".$link);
 			} 
-			elseif
-			{
-				//make sure image is correct filetype
-				$mimetype != "image/jpeg" &&
+			//make sure image is correct filetype
+			elseif( $mimetype != "image/jpeg" &&
 				$mimetype != "image/jpg" &&
 				$mimetype != "image/gif" &&
 				$mimetype != "image/png" ){
 	
 				$msg = "File type not allowed";
-				$link = $url[0]."/".$url[1]."/".$url[2]."/addItemPage.php?&meg=".$msg";
+				$link = $url[0]."/".$url[1]."/".$url[2]."/addItemPage.php?&meg=".$msg;
 				Header("Location:http://".$link);
 			} 
 			else
 			{
-				// $folder = "path to wangli01 images folder";
-				// $fn = $folder . $fid . "." . $ext;
-				$fn = $fid . "." . $ext;
-				move_uploaded_file($realdata, $fn);
-*/
-// need change png to $ext after fix image part code
 				// add data in ITEM_INFO
-				$q = "INSERT INTO ITEM_INFO VALUES (".$infoID.", '".$name."', '".$type."', '".$desc."', 'PNG');";   
+				$q = "INSERT INTO ITEM_INFO(NAME, type, description, picture) VALUES ('".$name."', '".$type."', '".$desc."', '".$ext."');";   
 				$r = $db->query($q);
 
 				if( $r == FALSE )
 				{
 					$link = $url[0]."/".$url[1]."/".$url[2]."/addItemPage.php?&meg=FAIL";
 					Header("Location:http://".$link);
+					return;
 				}
+				$q = "SELECT MAX(infoID) FROM ITEM_INFO;";
+				$r = $db->query($q);
 				
-//			}	
-		} 
+				if( $r != FALSE )
+				{
+					$v = $r->fetch();
+					$infoID = $v['MAX(infoID)'];
 
+					$folder = './items/';
+					$fn = $folder .'i'. $infoID . "." . $ext;
+					move_uploaded_file($realdata, $fn);
+				}
+				else
+				{
+					$link = $url[0]."/".$url[1]."/".$url[2]."/addItemPage.php?&meg=FAIL";
+					Header("Location:http://".$link);
+					return;
+				}
+			}	
+		} 
 		// add data in ITEM
 		$q = "INSERT INTO ITEM(location, price, amount, place_bought, D_Purchased, D_exp, infoID) VALUES ('".$location."', ".$price.", ".$amount.", '".$pb."', '".$dp."', '".$de."', ".$infoID. ");";
 		$r1 = $db->query($q);
@@ -104,7 +114,6 @@
 			$iid = $v['MAX(iid)'];
 
 			//  update I_U
-
 			$q = "INSERT INTO I_U VALUES (".$iid.", '".$_SESSION['email']."');";
 			$r3 = $db->query($q);
 
@@ -118,9 +127,6 @@
 				Header("Location:http://".$link); 
 			}	
 		}
-
-		
-
 		else
 		{
 			Header("Location: http://cs.gettysburg.edu/~wangli01/proj/addItemPage.php?&meg=FAIL");
