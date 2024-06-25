@@ -1,1 +1,1 @@
-# Fridge Manegement
+# Fridge Management
